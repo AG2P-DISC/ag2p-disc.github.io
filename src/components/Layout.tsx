@@ -18,9 +18,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex">
               <Link to="/" className="flex items-center">
                 <img 
-                  src="/images/ag2p-disc-logo.png" 
+                  src="/website/images/ag2p-disc-logo.png" 
                   alt="AG2P-DISC Logo" 
-                  className="h-16 w-auto"
+                  className="h-8 w-auto"
                 />
               </Link>
             </div>

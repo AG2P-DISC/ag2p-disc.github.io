@@ -171,8 +171,8 @@ const EncryptionTools: React.FC = () => {
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">HEGP: Homomorphic Encryption for Genotypes and Phenotypes</h3>
                 <div className="aspect-video relative mb-3">
                   <img 
-                    src="/images/encryption-method.png" 
-                    alt="AG2P-DISC Encryption Method Diagram" 
+                    src="/website/images/encryption-method.png" 
+                    alt="Encryption Method" 
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -209,8 +209,8 @@ const EncryptionTools: React.FC = () => {
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Partner Collaboration</h3>
                   <div className="aspect-video relative mb-3">
                     <img 
-                      src="/images/encryption-workflow-1.png" 
-                      alt="Partner Collaboration Workflow" 
+                      src="/website/images/encryption-workflow-1.png" 
+                      alt="Encryption Workflow Step 1" 
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -219,8 +219,8 @@ const EncryptionTools: React.FC = () => {
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Federated Analysis</h3>
                   <div className="aspect-video relative mb-3">
                     <img 
-                      src="/images/encryption-workflow-2.png" 
-                      alt="Broker-based Federated Analysis" 
+                      src="/website/images/encryption-workflow-2.png" 
+                      alt="Encryption Workflow Step 2" 
                       className="w-full h-full object-contain"
                     />
                   </div>
