@@ -9,7 +9,7 @@ import ProposalForm from './pages/ProposalForm';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/website">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/public-data" element={<PublicData />} />
