@@ -118,7 +118,7 @@ const HomePage: React.FC = () => {
       path: "/commercial-data"
     },
     {
-      title: "Educational Programs",
+      title: "Educational and Outreach Programs",
       description: "Comprehensive training in data sharing, collaboration, and data science skills for all stakeholders.",
       icon: <EducationIcon className="h-6 w-6 text-orange-600" />,
       color: "border-orange-500",
