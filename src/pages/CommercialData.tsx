@@ -110,7 +110,7 @@ const CommercialData: React.FC = () => {
   const partners: PartnerProps[] = [
      {
        name: "AG2P-DISC",
-       logo: "/website/images/ag2p-disc-logo.png"
+       logo: "/images/ag2p-disc-logo.png"
      },
     // {
     //   name: "Corteva Agriscience",
