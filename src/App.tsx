@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PublicData from './pages/PublicData';
 import EncryptionTools from './pages/EncryptionTools';
@@ -9,7 +9,7 @@ import ProposalForm from './pages/ProposalForm';
 
 function App() {
   return (
-    <Router basename="/website">
+    <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/public-data" element={<PublicData />} />

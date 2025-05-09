@@ -132,7 +132,7 @@ const HomePage: React.FC = () => {
       <div className="max-w-7xl mx-auto text-center mb-16">
         <div className="flex justify-center mb-8">
           <img 
-            src="/images/ag2p-disc-logo.png" 
+            src="./images/ag2p-disc-logo.png" 
             alt="AG2P-DISC Logo" 
             className="h-64 w-auto"
           />
