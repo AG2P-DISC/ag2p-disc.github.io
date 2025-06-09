@@ -87,6 +87,16 @@ const EncryptionTools: React.FC = () => {
           name: "Web Encryption Interface",
           description: "Browser-based tool for quick file encryption",
           link: "https://encrypt.ag2p-disc.org"
+        },
+        {
+          name: "Data QC Tool",
+          description: "Run quality control checks on plaintext and encrypted data",
+          link: "#"
+        },
+        {
+          name: "Data Packaging Tool",
+          description: "Package encrypted data into validated tarballs for sharing",
+          link: "#"
         }
       ]
     },
@@ -99,6 +109,16 @@ const EncryptionTools: React.FC = () => {
           name: "AG2P Share",
           description: "Web platform for secure dataset sharing and access management",
           link: "https://share.ag2p-disc.org"
+        },
+        {
+          name: "Secure File Transfer",
+          description: "SFTP/FTP or web-based upload for encrypted tarballs",
+          link: "#"
+        },
+        {
+          name: "QC Verification Tool",
+          description: "Broker tool for verifying QC statistics on received data",
+          link: "#"
         }
       ]
     },
@@ -109,13 +129,23 @@ const EncryptionTools: React.FC = () => {
       tools: [
         {
           name: "R Package",
-          description: "R functions for working with encrypted AG2P datasets",
+          description: "R functions for working with encrypted AG2P datasets and analysis",
           link: "https://github.com/AG2P-DISC/ag2p-r"
         },
         {
           name: "Python SDK",
-          description: "Python library for AG2P data encryption and access",
+          description: "Python library for AG2P data encryption, access, and analysis",
           link: "https://github.com/AG2P-DISC/ag2p-python"
+        },
+        {
+          name: "Result Packaging Tool",
+          description: "Encrypt and package result data for distribution",
+          link: "#"
+        },
+        {
+          name: "Repository/Download Portal",
+          description: "Access and download encrypted analysis results",
+          link: "#"
         }
       ]
     }
@@ -152,6 +182,40 @@ const EncryptionTools: React.FC = () => {
           </div>
         </div>
 
+        {/* Getting Started Section */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-lg p-8 mb-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Getting Started</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <CommandLineIcon className="h-8 w-8 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">1. Install Tools</h3>
+                <p className="text-gray-600">Download and install our command-line tools or use our web interface</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <KeyIcon className="h-8 w-8 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">2. Set Up Keys</h3>
+                <p className="text-gray-600">Generate your encryption keys and configure access controls</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <CloudArrowUpIcon className="h-8 w-8 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">3. Start Sharing</h3>
+                <p className="text-gray-600">Encrypt your data and share it securely with collaborators</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Main Features */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {features.map((feature, index) => (
@@ -180,7 +244,7 @@ const EncryptionTools: React.FC = () => {
                   Transform raw genomic data into secure formats while preserving analytical capabilities.
                 </p>
                 <div className="space-y-2">
-                <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2">
                     <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5"></div>
                     <p className="text-sm text-gray-700"><span className="font-medium">Local Encryption:</span> Data is encrypted at source before sharing, and raw data never leaves local storage.</p>
                   </div>
@@ -230,89 +294,21 @@ const EncryptionTools: React.FC = () => {
           </div>
         </div>
 
-        {/* Getting Started Section */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-lg p-8 mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Getting Started</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <CommandLineIcon className="h-8 w-8 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">1. Install Tools</h3>
-                <p className="text-gray-600">Download and install our command-line tools or use our web interface</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <KeyIcon className="h-8 w-8 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">2. Set Up Keys</h3>
-                <p className="text-gray-600">Generate your encryption keys and configure access controls</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <CloudArrowUpIcon className="h-8 w-8 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">3. Start Sharing</h3>
-                <p className="text-gray-600">Encrypt your data and share it securely with collaborators</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Documentation Section */}
         <div className="bg-white rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Documentation & Resources</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8">
             <a
-              href="https://docs.ag2p-disc.org/quick-start"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/encrypted-data-protocol"
               className="group"
             >
               <div className="flex items-start gap-3">
                 <DocumentDuplicateIcon className="h-6 w-6 text-blue-600" />
                 <div>
                   <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 mb-1">
-                    Quick Start Guide
+                    Encrypted Data Sharing and Analysis Agreement Protocol
                   </h3>
-                  <p className="text-sm text-gray-600">Get started with encrypting and sharing your first dataset</p>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://docs.ag2p-disc.org/security"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <div className="flex items-start gap-3">
-                <DocumentDuplicateIcon className="h-6 w-6 text-blue-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 mb-1">
-                    Security Documentation
-                  </h3>
-                  <p className="text-sm text-gray-600">Learn about our encryption standards and security practices</p>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://docs.ag2p-disc.org/api"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <div className="flex items-start gap-3">
-                <DocumentDuplicateIcon className="h-6 w-6 text-blue-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 mb-1">
-                    API Reference
-                  </h3>
-                  <p className="text-sm text-gray-600">Complete API documentation for developers</p>
+                  <p className="text-sm text-gray-600">Comprehensive guide for secure data sharing and analysis procedures</p>
                 </div>
               </div>
             </a>
