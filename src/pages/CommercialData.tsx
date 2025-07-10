@@ -19,16 +19,26 @@ interface PartnerProps {
 }
 
 const PartnerCard: React.FC<PartnerProps> = ({ name, logo }) => (
-  <div className="flex flex-col items-center p-6 bg-white rounded-lg hover:shadow-md transition-shadow">
-    <div className="h-20 flex items-center justify-center mb-4">
-      <img 
-        src={logo} 
-        alt={`${name} logo`} 
-        className="max-h-full max-w-full object-contain"
-      />
+  <Link 
+    to={`/partner/${name.toLowerCase().replace(/\s+/g, '-')}`}
+    className="group block"
+  >
+    <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow duration-200">
+      <div className="flex flex-col items-center text-center">
+        <img 
+          src={logo} 
+          alt={`${name} logo`}
+          className="h-12 w-12 object-contain mb-3 group-hover:scale-105 transition-transform duration-200"
+        />
+        <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+          {name}
+        </h3>
+        <p className="text-xs text-gray-500 mt-1">
+          Click for details
+        </p>
+      </div>
     </div>
-    <h3 className="text-sm font-medium text-gray-900 text-center">{name}</h3>
-  </div>
+  </Link>
 );
 
 const ProcessStep: React.FC<{ number: number; title: string; description: string }> = ({ 
@@ -50,13 +60,13 @@ const ProcessStep: React.FC<{ number: number; title: string; description: string
 interface TierProps {
   tier: string;
   dataType: string;
-  riskLevel: 'Low' | 'Moderate' | 'High';
+  confidentialityLevel: 'Low' | 'Moderate' | 'High';
   accessConditions: string;
 }
 
-const TierRow: React.FC<TierProps> = ({ tier, dataType, riskLevel, accessConditions }) => {
-  const getRiskBadgeStyle = (risk: string) => {
-    switch (risk) {
+const TierRow: React.FC<TierProps> = ({ tier, dataType, confidentialityLevel, accessConditions }) => {
+  const getConfidentialityBadgeStyle = (level: string) => {
+    switch (level) {
       case 'Low':
         return 'bg-green-100 text-green-800 ring-green-600/20';
       case 'Moderate':
@@ -68,8 +78,8 @@ const TierRow: React.FC<TierProps> = ({ tier, dataType, riskLevel, accessConditi
     }
   };
 
-  const getRiskIcon = (risk: string) => {
-    switch (risk) {
+  const getConfidentialityIcon = (level: string) => {
+    switch (level) {
       case 'Low':
         return <ShieldCheckIcon className="h-4 w-4 text-green-600" />;
       case 'Moderate':
@@ -90,9 +100,9 @@ const TierRow: React.FC<TierProps> = ({ tier, dataType, riskLevel, accessConditi
         {dataType}
       </td>
       <td className="px-3 py-4 text-sm text-gray-500">
-        <span className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${getRiskBadgeStyle(riskLevel)}`}>
-          {getRiskIcon(riskLevel)}
-          {riskLevel}
+        <span className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${getConfidentialityBadgeStyle(confidentialityLevel)}`}>
+          {getConfidentialityIcon(confidentialityLevel)}
+          {confidentialityLevel}
         </span>
       </td>
       <td className="px-3 py-4 text-sm text-gray-500">
@@ -104,61 +114,49 @@ const TierRow: React.FC<TierProps> = ({ tier, dataType, riskLevel, accessConditi
 
 const CommercialData: React.FC = () => {
   useEffect(() => {
-    document.title = 'Commercial Data Portal | AG2P-DISC';
+    document.title = 'Proprietary Data Request Portal | AG2P-DISC';
   }, []);
 
   const partners: PartnerProps[] = [
      {
-       name: "AG2P-DISC",
+       name: "Partner 1",
        logo: "/images/ag2p-disc-logo.png"
      },
-    // {
-    //   name: "Corteva Agriscience",
-    //   logo: "/images/logos/corteva.png"
-    // },
-    // {
-    //   name: "PIC",
-    //   logo: "/images/logos/pic.png"
-    // },
-    // {
-    //   name: "Hy-Line International",
-    //   logo: "/images/logos/hy-line.png"
-    // },
-    // {
-    //   name: "Council on Dairy Cattle Breeding",
-    //   logo: "/images/logos/cdcb.png"
-    // },
-    // {
-    //   name: "Bayer",
-    //   logo: "/images/logos/bayer.png"
-    // },
-    // {
-    //   name: "PigGen Canada",
-    //   logo: "/images/logos/piggen.png"
-    // },
-    // {
-    //   name: "Cobb",
-    //   logo: "/images/logos/cobb.png"
-    // }
+     {
+       name: "Partner 2",
+       logo: "/images/ag2p-disc-logo.png"
+     },
+     {
+       name: "Partner 3",
+       logo: "/images/ag2p-disc-logo.png"
+     },
+     {
+       name: "Partner 4",
+       logo: "/images/ag2p-disc-logo.png"
+     },
+     {
+       name: "Partner 5",
+       logo: "/images/ag2p-disc-logo.png"
+     }
   ];
 
   const tiers: TierProps[] = [
     {
       tier: "Tier 1",
       dataType: "Public summary stats, simulations",
-      riskLevel: "Low",
+      confidentialityLevel: "Low",
       accessConditions: "Open access with attribution"
     },
     {
       tier: "Tier 2",
-      dataType: "Genotype/phenotype data",
-      riskLevel: "Moderate",
-      accessConditions: "Requires MTA/DTA and proposal"
+      dataType: "Encrypted datasets, selected genotype/phenotype data",
+      confidentialityLevel: "Moderate",
+      accessConditions: "Streamlined review process, Material/Data Transfer Agreement (MTA/DTA) required"
     },
     {
       tier: "Tier 3",
       dataType: "Proprietary breeding records, linked multi-omics",
-      riskLevel: "High",
+      confidentialityLevel: "High",
       accessConditions: "Company-specific review, restricted use"
     }
   ];
@@ -169,13 +167,13 @@ const CommercialData: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            Commercial Data Access
+            Proprietary Data Request Portal
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             As part of AG2P-DISC's commitment to advancing collaborative agricultural research, 
             we provide a secure channel for requesting access to genomic and phenotypic data 
-            from participating commercial partners. Access is granted on a case-by-case basis 
-            and requires submission of a brief research proposal.
+            from participating partners and institutions with proprietary datasets. 
+            Access is granted on a case-by-case basis and requires submission of a brief research proposal.
           </p>
         </div>
 
@@ -227,6 +225,9 @@ const CommercialData: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900">
                 Tiered Data Access Model
               </h2>
+              <p className="mt-2 text-sm text-gray-600">
+                This table serves as an example. For partner-specific information, please click on each partner's icon to view their data access details.
+              </p>
             </div>
           </div>
           <div className="mt-4 flow-root">
@@ -242,7 +243,7 @@ const CommercialData: React.FC = () => {
                         Data Type
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                        Risk Level
+                        Confidentiality Level
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Access Conditions
@@ -258,9 +259,8 @@ const CommercialData: React.FC = () => {
               </div>
             </div>
           </div>
-          <p className="mt-4 text-sm text-gray-500 flex items-center gap-2">
-            <span className="text-green-600">💡</span>
-            Hover over each row for more details. Risk levels are indicated by color-coded badges.
+          <p className="mt-4 text-sm text-gray-500">
+            Researchers are expected to acknowledge the data-providing partners in all publications, presentations, and related communications, in recognition of their vital contributions to advancing science and supporting the broader research community.
           </p>
         </div>
 

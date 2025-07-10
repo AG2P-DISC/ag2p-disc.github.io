@@ -7,6 +7,7 @@ import CommercialData from './pages/CommercialData';
 import Education from './pages/Education';
 import ProposalForm from './pages/ProposalForm';
 import EncryptedDataProtocol from './pages/EncryptedDataProtocol';
+import PartnerDetail from './pages/PartnerDetail';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/commercial-data/proposal" element={<ProposalForm />} />
         <Route path="/education" element={<Education />} />
         <Route path="/encrypted-data-protocol" element={<EncryptedDataProtocol />} />
+        <Route path="/partner/:partnerId" element={<PartnerDetail />} />
       </Routes>
     </Router>
   );

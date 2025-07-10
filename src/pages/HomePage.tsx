@@ -82,8 +82,8 @@ const HomePage: React.FC = () => {
       path: "/encryption-tools"
     },
     {
-      title: "Data Portal to Commercial Data",
-      description: "Connect with commercial agricultural databases and research resources.",
+      title: "Proprietary Data Request Portal",
+      description: "Connect with proprietary agricultural databases and research resources.",
       icon: <BuildingOfficeIcon />,
       path: "/commercial-data"
     },
@@ -111,8 +111,8 @@ const HomePage: React.FC = () => {
       path: "/encryption-tools"
     },
     {
-      title: "Commercial Data Request Portal",
-      description: "Structured proposal and review process for accessing commercial agricultural datasets.",
+      title: "Proprietary Data Request Portal",
+      description: "Structured proposal and review process for accessing proprietary agricultural datasets.",
       icon: <ClipboardDocumentListIcon className="h-6 w-6 text-green-600" />,
       color: "border-green-500",
       path: "/commercial-data"
