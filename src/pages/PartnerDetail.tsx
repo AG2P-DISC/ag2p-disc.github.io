@@ -142,120 +142,184 @@ const PartnerDetail: React.FC = () => {
     document.title = `${partnerId} - Partner Details | AG2P-DISC`;
   }, [partnerId]);
 
-  // Mock partner data - in real implementation, this would come from an API
-  const partnerData = {
-    name: partnerId?.replace(/-/g, ' ') || 'Partner',
-    logo: "/images/ag2p-disc-logo.png",
-    description: "Leading agricultural research institution with extensive genomic and phenotypic datasets.",
-    contactEmail: "data-access@partner.com",
-    website: "https://partner.com"
+  // Partner data - in real implementation, this would come from an API
+  const getPartnerData = (partnerId: string) => {
+    if (partnerId === 'piggen-canada') {
+      return {
+        name: "PigGen Canada",
+        logo: "/images/logos/piggen.png",
+        description: "Representing the Canadian swine genetics industry with a single voice and serving as the 'go to' group for swine genetic research in Canada, focused on genetic solutions for sustainable pork production.",
+        contactEmail: "info@piggencanada.org",
+        website: "https://piggencanada.org"
+      };
+    }
+    
+    // Default partner data
+    return {
+      name: partnerId?.replace(/-/g, ' ') || 'Partner',
+      logo: "/images/ag2p-disc-logo.png",
+      description: "Leading agricultural research institution with extensive genomic and phenotypic datasets.",
+      contactEmail: "data-access@partner.com",
+      website: "https://partner.com"
+    };
   };
 
-  const partnerTiers: PartnerTierProps[] = [
-    {
-      tier: "Tier 1",
-      dataType: "Public summary statistics, simulation datasets",
-      confidentialityLevel: "Low",
-      accessConditions: "Open access with attribution",
-      processingTime: "Immediate",
-      restrictions: ["Must cite partner in publications"]
-    },
-    {
-      tier: "Tier 2",
-      dataType: "Encrypted datasets, selected genotype/phenotype data",
-      confidentialityLevel: "Moderate",
-      accessConditions: "Streamlined review process, Material/Data Transfer Agreement (MTA/DTA) required",
-      processingTime: "2-3 weeks",
-      restrictions: ["Academic use only", "No commercial applications", "Annual renewal required"]
-    },
-    {
-      tier: "Tier 3",
-      dataType: "Proprietary breeding records, linked multi-omics data",
-      confidentialityLevel: "High",
-      accessConditions: "Company-specific review, restricted use",
-      processingTime: "4-8 weeks",
-      restrictions: ["Case-by-case approval", "Strict confidentiality requirements", "Regular compliance monitoring"]
-    }
-  ];
+  const partnerData = getPartnerData(partnerId || '');
 
-  // Mock dataset information for each tier
-  const availableDatasets: DatasetInfo[] = [
-    {
-      tier: "Tier 1",
-      datasets: [
+  const getPartnerTiers = (partnerId: string): PartnerTierProps[] => {
+    if (partnerId === 'piggen-canada') {
+      return [
         {
-          name: "Corn Yield Summary Statistics",
-          description: "Public summary statistics from 10-year corn breeding program",
-          sampleSize: "15,000+ individuals",
-          traits: ["Grain Yield", "Plant Height", "Ear Length", "Drought Tolerance"],
-          genotypes: "50K SNP markers",
-          species: "Zea mays",
-          yearCollected: "2014-2023",
-          additionalInfo: ["Multi-location trials", "Standardized protocols", "Weather data included"]
-        },
-        {
-          name: "Soybean Simulation Dataset",
-          description: "Simulated genomic prediction dataset for soybean breeding",
-          sampleSize: "5,000 simulated individuals",
-          traits: ["Seed Protein", "Oil Content", "Maturity", "Disease Resistance"],
-          genotypes: "30K SNP markers",
-          species: "Glycine max",
-          yearCollected: "2023",
-          additionalInfo: ["Multiple simulation scenarios", "Training/validation splits provided"]
+          tier: "Tier 3",
+          dataType: "Proprietary swine disease resilience dataset with comprehensive genomic and phenotypic data",
+          confidentialityLevel: "High" as const,
+          accessConditions: "Company-specific review, restricted use, strict confidentiality requirements",
+          processingTime: "8 weeks",
+          restrictions: []
         }
-      ]
-    },
-    {
-      tier: "Tier 2",
-      datasets: [
-        {
-          name: "Wheat Genotype-Phenotype Collection",
-          description: "Encrypted genotype and phenotype data from winter wheat breeding program",
-          sampleSize: "8,500 individuals",
-          traits: ["Grain Yield", "Protein Content", "Test Weight", "Falling Number", "Disease Resistance"],
-          genotypes: "90K SNP markers",
-          species: "Triticum aestivum",
-          yearCollected: "2018-2022",
-          additionalInfo: ["Encrypted format", "Quality-controlled", "Metadata included"]
-        },
-        {
-          name: "Barley Multi-Trait Dataset",
-          description: "Selected barley lines with comprehensive trait measurements",
-          sampleSize: "3,200 individuals",
-          traits: ["Malt Quality", "Beta-Glucan", "Protein", "Yield", "Disease Resistance"],
-          genotypes: "40K SNP markers",
-          species: "Hordeum vulgare",
-          yearCollected: "2019-2021",
-          additionalInfo: ["Malt quality parameters", "Brewing industry relevant"]
-        }
-      ]
-    },
-    {
-      tier: "Tier 3",
-      datasets: [
-        {
-          name: "Proprietary Corn Breeding Records",
-          description: "Complete breeding records including pedigree and selection history",
-          sampleSize: "25,000+ individuals",
-          traits: ["All measured traits", "Breeding values", "Selection indices", "Commercial performance"],
-          genotypes: "600K SNP markers",
-          species: "Zea mays",
-          yearCollected: "2010-2023",
-          additionalInfo: ["Complete pedigree information", "Selection history", "Commercial performance data", "Multi-omics integration"]
-        },
-        {
-          name: "Linked Multi-Omics Dataset",
-          description: "Integrated genomic, transcriptomic, and metabolomic data",
-          sampleSize: "1,500 individuals",
-          traits: ["Multi-omics profiles", "Gene expression", "Metabolite levels", "Phenotypic traits"],
-          genotypes: "1M+ markers",
-          species: "Zea mays",
-          yearCollected: "2021-2023",
-          additionalInfo: ["RNA-seq data", "Metabolomics profiles", "Proteomics data", "Advanced analytics required"]
-        }
-      ]
+      ];
     }
-  ];
+    
+    // Default partner tiers
+    return [
+      {
+        tier: "Tier 1",
+        dataType: "Public summary statistics, simulation datasets",
+        confidentialityLevel: "Low" as const,
+        accessConditions: "Open access with attribution",
+        processingTime: "Immediate",
+        restrictions: ["Must cite partner in publications"]
+      },
+      {
+        tier: "Tier 2",
+        dataType: "Encrypted datasets, selected genotype/phenotype data",
+        confidentialityLevel: "Moderate" as const,
+        accessConditions: "Streamlined review process, Material/Data Transfer Agreement (MTA/DTA) required",
+        processingTime: "2-3 weeks",
+        restrictions: ["Academic use only", "No commercial applications", "Annual renewal required"]
+      },
+      {
+        tier: "Tier 3",
+        dataType: "Proprietary breeding records, linked multi-omics data",
+        confidentialityLevel: "High" as const,
+        accessConditions: "Company-specific review, restricted use",
+        processingTime: "4-8 weeks",
+        restrictions: ["Case-by-case approval", "Strict confidentiality requirements", "Regular compliance monitoring"]
+      }
+    ];
+  };
+
+  const partnerTiers = getPartnerTiers(partnerId || '');
+
+  // Dataset information for each tier
+  const getAvailableDatasets = (partnerId: string): DatasetInfo[] => {
+    if (partnerId === 'piggen-canada') {
+      return [
+        {
+          tier: "Tier 3",
+          datasets: [
+            {
+              name: "PigGen Disease Resilience Dataset",
+              description: "Comprehensive swine disease resilience dataset with natural challenge protocol evaluation",
+              sampleSize: "3,139 pigs (3,285 initially, 146 removed during QC)",
+              traits: ["Disease Resilience", "Average Daily Gain", "Feed Conversion Ratio", "Body Weight", "Feed Intake", "Carcass Quality"],
+              genotypes: "435,172 SNPs (650K SNP panel, post-QC)",
+              species: "Sus scrofa (Large White × Landrace cross)",
+              yearCollected: "2019-2021",
+              additionalInfo: [
+                "Natural challenge protocol simulating high disease pressure",
+                "Three-phase evaluation: quarantine nursery, challenge nursery, finishing phase",
+                "50 batches of 60-75 individuals each",
+                "Quality control: MAF > 0.05, marker call rate > 0.10, individual call rate > 0.10",
+                "Comprehensive phenotypic data collection throughout growth phases"
+              ]
+            }
+          ]
+        }
+      ];
+    }
+    
+    // Default datasets for other partners
+    return [
+      {
+        tier: "Tier 1",
+        datasets: [
+          {
+            name: "Corn Yield Summary Statistics",
+            description: "Public summary statistics from 10-year corn breeding program",
+            sampleSize: "15,000+ individuals",
+            traits: ["Grain Yield", "Plant Height", "Ear Length", "Drought Tolerance"],
+            genotypes: "50K SNP markers",
+            species: "Zea mays",
+            yearCollected: "2014-2023",
+            additionalInfo: ["Multi-location trials", "Standardized protocols", "Weather data included"]
+          },
+          {
+            name: "Soybean Simulation Dataset",
+            description: "Simulated genomic prediction dataset for soybean breeding",
+            sampleSize: "5,000 simulated individuals",
+            traits: ["Seed Protein", "Oil Content", "Maturity", "Disease Resistance"],
+            genotypes: "30K SNP markers",
+            species: "Glycine max",
+            yearCollected: "2023",
+            additionalInfo: ["Multiple simulation scenarios", "Training/validation splits provided"]
+          }
+        ]
+      },
+      {
+        tier: "Tier 2",
+        datasets: [
+          {
+            name: "Wheat Genotype-Phenotype Collection",
+            description: "Encrypted genotype and phenotype data from winter wheat breeding program",
+            sampleSize: "8,500 individuals",
+            traits: ["Grain Yield", "Protein Content", "Test Weight", "Falling Number", "Disease Resistance"],
+            genotypes: "90K SNP markers",
+            species: "Triticum aestivum",
+            yearCollected: "2018-2022",
+            additionalInfo: ["Encrypted format", "Quality-controlled", "Metadata included"]
+          },
+          {
+            name: "Barley Multi-Trait Dataset",
+            description: "Selected barley lines with comprehensive trait measurements",
+            sampleSize: "3,200 individuals",
+            traits: ["Malt Quality", "Beta-Glucan", "Protein", "Yield", "Disease Resistance"],
+            genotypes: "40K SNP markers",
+            species: "Hordeum vulgare",
+            yearCollected: "2019-2021",
+            additionalInfo: ["Malt quality parameters", "Brewing industry relevant"]
+          }
+        ]
+      },
+      {
+        tier: "Tier 3",
+        datasets: [
+          {
+            name: "Proprietary Corn Breeding Records",
+            description: "Complete breeding records including pedigree and selection history",
+            sampleSize: "25,000+ individuals",
+            traits: ["All measured traits", "Breeding values", "Selection indices", "Commercial performance"],
+            genotypes: "600K SNP markers",
+            species: "Zea mays",
+            yearCollected: "2010-2023",
+            additionalInfo: ["Complete pedigree information", "Selection history", "Commercial performance data", "Multi-omics integration"]
+          },
+          {
+            name: "Linked Multi-Omics Dataset",
+            description: "Integrated genomic, transcriptomic, and metabolomic data",
+            sampleSize: "1,500 individuals",
+            traits: ["Multi-omics profiles", "Gene expression", "Metabolite levels", "Phenotypic traits"],
+            genotypes: "1M+ markers",
+            species: "Zea mays",
+            yearCollected: "2021-2023",
+            additionalInfo: ["RNA-seq data", "Metabolomics profiles", "Proteomics data", "Advanced analytics required"]
+          }
+        ]
+      }
+    ];
+  };
+
+  const availableDatasets = getAvailableDatasets(partnerId || '');
 
   return (
     <Layout>
@@ -278,7 +342,7 @@ const PartnerDetail: React.FC = () => {
               <img 
                 src={partnerData.logo} 
                 alt={`${partnerData.name} logo`}
-                className="h-16 w-16 object-contain"
+                className="h-24 w-24 object-contain"
               />
             </div>
             <div>
@@ -289,7 +353,6 @@ const PartnerDetail: React.FC = () => {
                 {partnerData.description}
               </p>
               <div className="flex gap-4 text-sm text-gray-500">
-                <span>Contact: {partnerData.contactEmail}</span>
                 <a 
                   href={partnerData.website} 
                   target="_blank" 
@@ -382,6 +445,7 @@ const PartnerDetail: React.FC = () => {
           <h3 className="text-xl font-bold text-gray-900 mb-4">
             Additional Requirements & Restrictions
           </h3>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {partnerTiers.map((tier, index) => (
               <div key={index} className="border border-gray-200 rounded-lg p-4">
@@ -395,6 +459,26 @@ const PartnerDetail: React.FC = () => {
                       </li>
                     ))}
                   </ul>
+                )}
+                
+                {/* Special link for PigGen Canada Tier 3 */}
+                {partnerId === 'piggen-canada' && tier.tier === "Tier 3" && (
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <p className="text-sm text-gray-700 mb-2">
+                      <strong>Procedure for requesting access to the full data:</strong>
+                    </p>
+                    <a 
+                      href="/files/jkab441supplemental_material.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      Read detailed procedure (PDF)
+                    </a>
+                  </div>
                 )}
               </div>
             ))}

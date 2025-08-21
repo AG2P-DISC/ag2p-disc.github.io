@@ -28,7 +28,7 @@ const PartnerCard: React.FC<PartnerProps> = ({ name, logo }) => (
         <img 
           src={logo} 
           alt={`${name} logo`}
-          className="h-12 w-12 object-contain mb-3 group-hover:scale-105 transition-transform duration-200"
+          className="h-20 w-20 object-contain mb-3 group-hover:scale-105 transition-transform duration-200"
         />
         <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
           {name}
@@ -119,8 +119,8 @@ const CommercialData: React.FC = () => {
 
   const partners: PartnerProps[] = [
      {
-       name: "Partner 1",
-       logo: "/images/ag2p-disc-logo.png"
+       name: "PigGen Canada",
+       logo: "/images/logos/piggen.png"
      },
      {
        name: "Partner 2",
@@ -211,6 +211,7 @@ const CommercialData: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             Participating Commercial Partners
           </h2>
+                    
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             {partners.map((partner, index) => (
               <PartnerCard key={index} {...partner} />
