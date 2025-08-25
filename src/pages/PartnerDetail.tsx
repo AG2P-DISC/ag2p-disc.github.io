@@ -468,7 +468,7 @@ const PartnerDetail: React.FC = () => {
                       <strong>Procedure for requesting access to the full data:</strong>
                     </p>
                     <a 
-                      href="/files/jkab441supplemental_material.pdf" 
+                      href="/jkab441supplemental_material.pdf" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium"
